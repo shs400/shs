@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="WebGL ( 6 - Martrix )이번에는 3D를 표현하기에 앞서Matrix(행렬)에 대해 설명부터 하려고 합니다.
+3D를 표현하기전에저희는 기존에 버텍스를(x,y,z,w) 다루었습니다.( * 앞장까지는 x,y,z 만으로도 표현이 가능하였습니다. )
+저희가 기억해야"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="hyunsu SIM"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="WebGL-6"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="WebGL ( 6 - Martrix )이번에는 3D를 표현하기에 앞서Matrix(행렬)에 대해 설명부터 하려고 합니다.
+3D를 표현하기전에저희는 기존에 버텍스를(x,y,z,w) 다루었습니다.( * 앞장까지는 x,y,z 만으로도 표현이 가능하였습니다. )
+저희가 기억해야"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="HyunSu - Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://shs400.github.iohttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://shs400.github.iohttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>WebGL-6 - HyunSu - Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">shs400 Home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>WebGL-6</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-11-21
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/javascript/">#javascript</a> <a href="/tags/blog/">#blog</a> <a href="/tags/webgl/">#webgl</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/javascript/">javascript</a>/ <a href="/categories/javascript/blog/">blog</a>/ <a href="/categories/javascript/blog/study/">study</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- excerpt -->
+<h1 id="WebGL-6-Martrix"><a href="#WebGL-6-Martrix" class="headerlink" title="WebGL ( 6 - Martrix )"></a>WebGL ( 6 - Martrix )</h1><p>이번에는 3D를 표현하기에 앞서<br>Matrix(행렬)에 대해 설명부터 하려고 합니다.</p>
+<p>3D를 표현하기전에<br>저희는 기존에 버텍스를(x,y,z,w) 다루었습니다.<br>( * 앞장까지는 x,y,z 만으로도 표현이 가능하였습니다. )</p>
+<p>저희가 기억해야할 것은 w입니다.</p>
+<ul>
+<li><code>w = 1 이면 벡터공간에서의 점의 위치입니다. ( x, y, z, 1 )</code></li>
+<li><code>w = 0 이면 벡터공간에서의 방향입니다. ( x, y, z, 0 )</code></li>
+</ul>
+<p>위의 내용은 무조건 기억하고 있어야합니다.</p>
+<h3 id="Matrix-이해"><a href="#Matrix-이해" class="headerlink" title="Matrix 이해"></a>Matrix 이해</h3><p>3D 그래픽스에서 4x4 행렬을 주로 사용하는데,<br>이들은 우리의 (x,y,z,w) 버텍스들을 변형하게 해줍니다. 이에 대한 공식은 아래와 같습니다.<br>행렬 x 버텍스 = 변형된 버텍스 ( * 순서가 동일해야합니다. )</p>
+<p><img src="/images/webgl6/matrix01.gif" alt="matrix 변환"></p>
+<p>위의 공식은 GLSL에서는 아래와 같이 사용합니다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mat4 Matrix;</span><br><span class="line">vec4 Vector;</span><br><span class="line"></span><br><span class="line">vec4 transformedVector = Matrix * Vector;</span><br></pre></td></tr></table></figure>
+<p>이처럼 저희는 변형된 버텍스 값을 사용하게되며,<br>앞서 말했던 (x,y,z,w) 벡터에 대해 설명하기 위해<br>이해하기 쉬운 평행이동 행렬에 대해 설명하겠습니다.</p>
+<h4 id="평행이동-행렬"><a href="#평행이동-행렬" class="headerlink" title="평행이동 행렬"></a>평행이동 행렬</h4><p><img src="/images/webgl6/matrix02.png" alt="matrix 변환"></p>
+<p>위의 행렬이 평행이동 행렬입니다.<br>X,Y,Z에 있는 것들이 자신의 위치에서 더하고자 하는 값입니다.</p>
+<p><img src="/images/webgl6/matrix03.png" alt="matrix 변환"></p>
+<p>자신을 X 방향으로 20만큼 평행이동 시키면 위와 같이 계산을 하게되고,<br>결과는 벡터 ( 10, 10, 10, 1 )을 X 방향으로 20 이동시킨<br>( 30, 10, 10, 1 ) 벡터값을 얻게 됩니다.<br><code>(w = 1 일때 x 방향으로 이동하였으므로 위치가 변경되었습니다.)</code></p>
+<p><img src="/images/webgl6/matrix04.png" alt="matrix 변환"></p>
+<p>자신을 X 방향으로 20만큼 평행이동 시키면 위와 같이 계산을 하게되고,<br>결과는 벡터 ( 0, 0, -1, 0 )을 X 방향으로 20 이동시켰으나<br>변함이 없는 ( 0, 0, -1, 0 ) 벡터값을 얻게 됩니다.<br><code>(w = 0 일때 x 방향으로 이동하였으나 변화가 없습니다.)</code><br><code>이유는 바로 점은 이동하면 다른 좌표값을 갖는 점이 되지만 벡터는 이동한다고 방향이나 크기가 변하지 않기 때문입니다</code></p>
+<h4 id="단위-행렬"><a href="#단위-행렬" class="headerlink" title="단위 행렬"></a>단위 행렬</h4><p>단위 행렬은 주 대각선이 1이고 나머지가 0인 행렬이고, 아무것도 하지않는 행렬입니다.</p>
+<p><img src="/images/webgl6/matrix05.png" alt="matrix 변환"></p>
+<p>단위행렬에 벡터값(x, y, z, w)을 곱하면 벡터값 자신이 나오기 때문에 아무것도 하지 않습니다.</p>
+<p>이를 이용하여 우리는 scale 매트릭스, translate 매트릭스, rotate 매트릭스등을 활용할 수 있습니다.<br>예를 들어 scale 매트릭스는 아래의 그림과 같습니다.</p>
+<h4 id="Scale-행렬"><a href="#Scale-행렬" class="headerlink" title="Scale 행렬"></a>Scale 행렬</h4><p><img src="/images/webgl6/matrix06.png" alt="matrix 변환"></p>
+<p>벡터값을 모든방향으로 2배 scale하려면</p>
+<p><img src="/images/webgl6/matrix07.png" alt="matrix 변환"></p>
+<p>벡터값의 x,y,z가 아닌 scale 매트릭스의 x,y,z값을 2배로 주면 벡터값이 2배가 되고,<br>실제 코드에선 아래와 같이 사용됩니다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat4.scale(mvMatrix, [<span class="number">2.0</span>, <span class="number">2.0</span>, <span class="number">2.0</span>]);</span><br><span class="line"><span class="comment">// 스캐일 매트릭스 사용법</span></span><br></pre></td></tr></table></figure>
+<p>!! 만약 scale, translate, rotate를 같이 사용할때는 꼭 순서를 지켜서 사용하여야 합니다.<br>순서는 translate -&gt; rotate -&gt; scale</p>
+<p>위와 같이 단위 행렬, 평행이동 행렬, Scale 행렬 등 여러 행렬을 따로 구현 하는 것 보다는<br>이미 나와있는 기존의 라이브러리를 활용하는 것이 좋습니다.</p>
+<p>우리는 gl-matrix라는 라이브러리를 사용하려고 하고,<br>해당 라이브러리의 주소는 <a href="http://glmatrix.net" target="_blank" rel="noopener">http://glmatrix.net</a> 입니다.</p>
+<p>해당 페이지의 내용과 이미지의 출처는<br><a href="https://webglfundamentals.org/" target="_blank" rel="noopener">https://webglfundamentals.org/</a> 입니다. </p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 hyunsu SIM<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

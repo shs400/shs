@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="WebGL ( 7 - View )이번장은 3D 도형을 구현하기전에 View 관점에 대해 설명하려고 합니다.앞의 6장의 행렬과 관련된 내용입니다.
+모델, 뷰, 프로젝션 Matrix ( MVP )먼저 랜더링 간단한 랜더링 파이프라인은 이렇습니다.
+
+월드 -&amp;gt; 카메라 "/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="hyunsu SIM"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="WebGL-7"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="WebGL ( 7 - View )이번장은 3D 도형을 구현하기전에 View 관점에 대해 설명하려고 합니다.앞의 6장의 행렬과 관련된 내용입니다.
+모델, 뷰, 프로젝션 Matrix ( MVP )먼저 랜더링 간단한 랜더링 파이프라인은 이렇습니다.
+
+월드 -&amp;gt; 카메라 "/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="HyunSu - Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://shs400.github.iohttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://shs400.github.iohttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>WebGL-7 - HyunSu - Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">shs400 Home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>WebGL-7</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-12-24
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/javascript/">#javascript</a> <a href="/tags/blog/">#blog</a> <a href="/tags/webgl/">#webgl</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/javascript/">javascript</a>/ <a href="/categories/javascript/blog/">blog</a>/ <a href="/categories/javascript/blog/study/">study</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- excerpt -->
+<h1 id="WebGL-7-View"><a href="#WebGL-7-View" class="headerlink" title="WebGL ( 7 - View )"></a>WebGL ( 7 - View )</h1><p>이번장은 3D 도형을 구현하기전에 View 관점에 대해 설명하려고 합니다.<br>앞의 6장의 행렬과 관련된 내용입니다.</p>
+<h2 id="모델-뷰-프로젝션-Matrix-MVP"><a href="#모델-뷰-프로젝션-Matrix-MVP" class="headerlink" title="모델, 뷰, 프로젝션 Matrix ( MVP )"></a>모델, 뷰, 프로젝션 Matrix ( MVP )</h2><p>먼저 랜더링 간단한 랜더링 파이프라인은 이렇습니다.</p>
+<p><img src="/images/webgl6/matrix08.jpg" alt="matrix"></p>
+<p>월드 -&gt; 카메라 -&gt; 투영행렬을 거쳐 3차원이 2차원으로 변환되는 과정입니다.<br>투영행렬이 끝난뒤에 클리핑과 뷰포트 변환이 있지만 여기서는 위와같이 투영 행렬까지만 설명합니다.</p>
+<p><img src="/images/webgl6/matrix09.jpg" alt="matrix"></p>
+<p><code>모델 Matrix</code>는 모델좌표계에서 월드 좌표계로 변환해주는 행렬입니다.<br>( 6장에서 배운 translate, scale, rotate 변환이 모델 Matrix 입니다. )</p>
+<p><img src="/images/webgl6/matrix10.jpg" alt="matrix 변환"></p>
+<p>다음으로 월드 좌표계에서 카메라 좌표계로 변환해줘야 하는데<br>이때 <code>뷰 Matrix</code>를 사용합니다.<br>( 이 과정에서 카메라의 이동이라던지 카메라 위치 설정등이 이루어지고 lookAt 함수를 사용하게 됩니다. )</p>
+<p><img src="/images/webgl6/matrix11.jpg" alt="matrix 변환"></p>
+<p>마지막으로 투영 변환 ( Projection Matrix )</p>
+<p>월드 좌표계와 카메라 좌표계는 모두 3차원 좌표계입니다.<br>그러나 우리가 디스플레이로 확인하게 되는 랜더링 결과들은 모두 2차원의 화면입니다.<br>때문에 3차원 좌표계를 2차원 좌표계로 바꾸는 변환이 필요하다는 것을 알 수 있는데,<br>이때 <code>투영 변환</code>이 필요합니다.</p>
+<p>투영 변환에는 perspective와 Orthographic가 있는데<br>우리는 perspective를 사용하도록 하겠습니다.</p>
+<h3 id="perspective"><a href="#perspective" class="headerlink" title="perspective"></a>perspective</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Ex)</span><br><span class="line">mat4.perspective(view, canvas.width / canvas.height, <span class="number">0.1</span>, <span class="number">2000.0</span>, pMatrix);</span><br><span class="line"><span class="comment">// mat4.perspective 는 gl-matrix 라이브러리의 헬퍼 함수 </span></span><br><span class="line"><span class="comment">// (시야, 종횡비, 전방 및 후방 경계를 인자로 받는다.)</span></span><br><span class="line"><span class="comment">// 1. 시야 : 수직방향 시야각입니다.</span></span><br><span class="line"><span class="comment">// 2. 종횡비 : 화면 비 이고, 윈도우 크기에 의존합니다.</span></span><br><span class="line"><span class="comment">// 3. 근거리 잘라내기</span></span><br><span class="line"><span class="comment">// 4. 원거리 잘라내기</span></span><br></pre></td></tr></table></figure>
+<iframe src="https://webgl2fundamentals.org/webgl/frustum-diagram.html" width="700px" height="600px" frameborder="0" allowfullscreen></iframe>
+<p>출처 : [webglfundamentals.org]</p>
+<p>위의 변환까지 모두 완료가 되면 GLSL에서<br>Model, View, Projection 을 모두 곱해줘야합니다.<br>이때 행렬의 곱 순서는 꼭 mvp의 역순으로 곱해주어야 합니다.<br>( MVPmatrix = projection X view X model; )</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script id=<span class="string">"shader-vs"</span> type=<span class="string">"x-shader/x-vertex"</span>&gt;</span><br><span class="line">    attribute vec3 aVertexPosition;</span><br><span class="line">    attribute vec4 aVertexColor;</span><br><span class="line"></span><br><span class="line">    uniform mat4 uMVMatrix;</span><br><span class="line">    uniform mat4 uPMatrix;</span><br><span class="line"></span><br><span class="line">    varying vec4 v_color;</span><br><span class="line">    <span class="keyword">void</span> main(<span class="keyword">void</span>) &#123;</span><br><span class="line">      gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, <span class="number">1.0</span>);</span><br><span class="line">      v_color = aVertexColor * <span class="number">0.5</span> + <span class="number">0.5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>이번장은 여기서 마무리하고 다음장에서는 실제 3D 화면을 구현해 보도록 하겠습니다.</p>
+<p><img src="/images/webgl6/matrix12.jpg" alt="matrix 변환"></p>
+<p>핵심 위치에 라벨을 붙임</p>
+<p><img src="/images/webgl6/matrix13.jpg" alt="matrix 변환"></p>
+<p>라벨을 붙인후 각 라벨에 인덱스 정점을 활용</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 hyunsu SIM<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
